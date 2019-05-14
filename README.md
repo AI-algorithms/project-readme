@@ -1,2 +1,3 @@
 #### project-readme
-Summary of the items in the technical documents .项目中的遇到的技术文档的总结.
+遇到的问题和需要避免的一些错误的认知,提高自己的能力,我们在路上!
+
