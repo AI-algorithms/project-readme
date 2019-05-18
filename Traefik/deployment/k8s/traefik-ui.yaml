@@ -10,7 +10,7 @@ metadata:
     traefik.ingress.kubernetes.io/auth-secret: "traefik.ui.secret"
 spec:
   rules:
-  - host: traefik-ui.niuniuniuxs.com
+  - host: ui.example.com
     http:
       paths:
       - path: /
