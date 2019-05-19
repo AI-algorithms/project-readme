@@ -1,0 +1,32 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: traefik-cfg
+  namespace: kube-system
+data:
+  traefik.toml: |
+    # 激活调试模式 （默认关闭）
+    debug = false
+
+    # 检查新版本 (默认开启)
+    checkNewVersion=false
+
+    # 日志等级 （默认 ERROR）
+    logLevel = "INFO"
+
+    # 全局入口点类型 （默认 http）
+    defaultEntryPoints = ["http","https"]
+    # 不上报统计信息
+    sendAnonymousUsage = false
+
+    [entryPoints]
+      [entryPoints.http]
+      address = ":80"
+      [entryPoints.http.redirect]
+        entryPoint = "https"
+      [entryPoints.https]
+        address = ":443"
+        [entryPoints.https.tls]
+          [[entryPoints.https.tls.certificates]]
+            certFile = "/path/host.ssl.pem"
+            keyFile = "/path/host.ssl.key"
