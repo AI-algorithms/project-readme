@@ -16,4 +16,4 @@ spec:
       - path: /
         backend:
           serviceName: traefik-ingress-service
-          servicePort: web
+          servicePort: admin
