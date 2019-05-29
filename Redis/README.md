@@ -12,4 +12,5 @@ Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱
 
 1. Redis使用，安装和配置选项
 2. Redis源码进阶
-
+3. Redis集群方案 
+4. Redis使用场景
