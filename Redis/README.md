@@ -15,5 +15,11 @@ Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱
 3. Redis集群方案 
 4. Redis使用场景
 
-[Redis安装](./01.md)
-[Redis字符串类型](./02md)
+- [Redis安装及配置](./0.1.md)
+- [Redis String](./0.2.md)
+- [Redis Hash](./0.3.md)
+- [Redis List](./0.4.md)
+- [Redis Set](./0.5.md)
+- [Redis Object](./0.6.md)
+- [Redis 集群方案](./0.7.md)
+- [Redis 使用场景](./0.8.md)
