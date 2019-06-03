@@ -21,6 +21,7 @@ Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱
 - [String结构](./0.2.md)
 - [Hash结构](./0.3.md)
 - [List结构](./0.4.md)
+- [Int set结构](./0.15.md)
 - [Set/Zset结构](./0.5.md)
 - [redisObject结构](./0.6.md)
 - [事件驱动](./0.14.md)
