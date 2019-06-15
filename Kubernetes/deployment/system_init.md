@@ -45,7 +45,6 @@ Linux 5.1.10-1.el7.elrepo.x86_64 x86_64
 192.168.50.3    node02
 192.168.50.4    node03
 192.168.50.181  node04
-192.168.50.176  node05
 192.168.50.171  node06
 EOF
 ```
@@ -233,7 +232,7 @@ Retrieving http://elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 Preparing...                          ################################# [100%]
 Updating / installing...
    1:elrepo-release-7.0-3.el7.elrepo  ################################# [100%]
-   
+
 # 查看可升级内核模块及相应版本
 [root@node1 ~]# yum list available --disablerepo='*' --enablerepo=elrepo-kernel
 # 升级内核版本，型号为kernel-lt 
@@ -246,7 +245,15 @@ Updating / installing...
 3 : CentOS Linux (3.10.0-327.el7.x86_64) 7 (Core)
 4 : CentOS Linux (0-rescue-e20630b279f74ade9b23049f62de9be4) 7 (Core)
 # 选择你所需要的升级后的内核版本序号
+# 这里选择内核版本为 4.4.181-1.el7.elrepo.x86_64，当前序号为 1
 [root@node1 ~]# grub2-set-default 1
 [root@node1 ~]# grub2-mkconfig -o /boot/grub2/grub.cfg
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-4.4.181-1.el7.elrepo.x86_64
+Found initrd image: /boot/initramfs-4.4.181-1.el7.elrepo.x86_64.img
+Found linux image: /boot/vmlinuz-3.10.0-327.el7.x86_64
+Found initrd image: /boot/initramfs-3.10.0-327.el7.x86_64.img
+Found linux image: /boot/vmlinuz-0-rescue-9d8b479c072b4b709f271c3126e1322f
+Found initrd image: /boot/initramfs-0-rescue-9d8b479c072b4b709f271c3126e1322f.img
 [root@node1 ~]# reboot
 ```
