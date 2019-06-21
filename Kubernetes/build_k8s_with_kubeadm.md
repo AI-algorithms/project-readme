@@ -222,3 +222,7 @@
   - 生成admin-user的登录令牌
   
     `sudo kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')`
+  
+  - 访问dashboard
+  
+    `http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login`
