@@ -56,6 +56,7 @@
     sudo docker pull registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/pause:3.1
     sudo docker pull registry.cn-hangzhou.aliyuncs.com/jxqc/etcd:3.3.10
     sudo docker pull registry.cn-hangzhou.aliyuncs.com/jxqc/coredns:1.3.1
+    sudo docker pull registry.cn-hangzhou.aliyuncs.com/kuberneters/kubernetes-dashboard-amd64:v1.10.1
     // 为拉取的镜像重新打tag
     sudo docker tag registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/kube-controller-manager:v1.14.1     k8s.gcr.io/kube-controller-manager:v1.14.1
     sudo docker tag registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/kube-apiserver:v1.14.1                          k8s.gcr.io/kube-apiserver:v1.14.1
@@ -64,6 +65,8 @@
     sudo docker tag registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/pause:3.1                                                      k8s.gcr.io/pause:3.1
     sudo docker tag registry.cn-hangzhou.aliyuncs.com/jxqc/etcd:3.3.10                                                                                                 k8s.gcr.io/etcd:3.3.10
     sudo docker tag registry.cn-hangzhou.aliyuncs.com/jxqc/coredns:1.3.1                                                                                            k8s.gcr.io/coredns:1.3.1
+    sudo docker tag registry.cn-hangzhou.aliyuncs.com/kuberneters/kubernetes-dashboard-amd64:v1.10.1                      k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
+    
     // 删除无用的镜像
     sudo docker rmi registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/kube-controller-manager:v1.14.1
     sudo docker rmi registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/kube-apiserver:v1.14.1
@@ -72,6 +75,7 @@
     sudo docker rmi registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/pause:3.1
     sudo docker rmi registry.cn-hangzhou.aliyuncs.com/jxqc/etcd:3.3.10
     sudo docker rmi registry.cn-hangzhou.aliyuncs.com/jxqc/coredns:1.3.1
+    sudo docker rmi registry.cn-hangzhou.aliyuncs.com/kuberneters/kubernetes-dashboard-amd64:v1.10.1
     ```
   
   - **以上相同配置的子节点一台**
