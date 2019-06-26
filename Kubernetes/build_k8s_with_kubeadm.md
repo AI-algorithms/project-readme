@@ -182,6 +182,10 @@
   
     `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
   
+  - 开启dashboard服务
+  
+    `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml`
+  
   - 子节点加入主节点集群
   
     `kubeadm join 192.168.0.109:6443 --token qg3ci5.kvvoglj9lxejc3ij    --discovery-token-ca-cert-hash sha256:3a2af178182529a7e163260ec80f546edce98213c252cb0e6fdc0158a5cc876a `
@@ -198,23 +202,53 @@
   - 查看集群中的pod,本地nameserver 127.0.0.53导致coredns的CrashLoopBackOff
   
     ```bash
-    chen@chen:~$ sudo kubectl get pod --all-namespaces
-    NAMESPACE     NAME                           READY   STATUS             RESTARTS   AGE
-    kube-system   coredns-fb8b8dccf-mv4px        0/1     CrashLoopBackOff   18         70m
-    kube-system   coredns-fb8b8dccf-ttsh9        0/1     CrashLoopBackOff   18         70m
-    kube-system   etcd-chen                      1/1     Running            0          70m
-    kube-system   kube-apiserver-chen            1/1     Running            0          69m
-    kube-system   kube-controller-manager-chen   1/1     Running            0          69m
-    kube-system   kube-flannel-ds-amd64-bbzsn    1/1     Running            0          38m
-    kube-system   kube-flannel-ds-amd64-fhhth    1/1     Running            0          38m
-    kube-system   kube-proxy-ghvqj               1/1     Running            0          45m
-    kube-system   kube-proxy-xx7kk               1/1     Running            0          70m
-    kube-system   kube-scheduler-chen            1/1     Running            0          70m
+    chen@chen:~/kubernetes$ sudo kubectl get pod --all-namespaces
+    NAMESPACE     NAME                                    READY   STATUS             RESTARTS   AGE
+    kube-system   coredns-fb8b8dccf-rjjfh                 0/1     CrashLoopBackOff   9          21m
+    kube-system   coredns-fb8b8dccf-vgrx5                 0/1     CrashLoopBackOff   9          21m
+    kube-system   etcd-chen                               1/1     Running            0          20m
+    kube-system   kube-apiserver-chen                     1/1     Running            0          20m
+    kube-system   kube-controller-manager-chen            1/1     Running            0          20m
+    kube-system   kube-flannel-ds-amd64-8hf89             1/1     Running            0          20m
+    kube-system   kube-flannel-ds-amd64-vs5pv             1/1     Running            0          17m
+    kube-system   kube-proxy-mrvgk                        1/1     Running            0          17m
+    kube-system   kube-proxy-pbwjw                        1/1     Running            0          21m
+    kube-system   kube-scheduler-chen                     1/1     Running            0          20m
+    kube-system   kubernetes-dashboard-5f7b999d65-jgnrq   1/1     Running            0          11m
     ```
   
-  - [创建一个amdin-user](<https://github.com/kubernetes/dashboard/wiki/Creating-sample-user>)
+  - [创建一个amdin-user, 并绑定一个管理员角色](<https://github.com/kubernetes/dashboard/wiki/Creating-sample-user>)
   
-    `sudo kubectl apply -f dashboard-adminuser.yaml`
+    1) `vi  dashboard-adminuser-create.yaml`
+  
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: admin-user
+      namespace: kube-system
+    ```
+  
+    `创建用户:sudo kubectl apply -f dashboard-adminuser-create.yaml`
+  
+    2)`vi dashboard-adminuser-role-binding.yaml`
+  
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: admin-user
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: cluster-admin
+    subjects:
+    - kind: ServiceAccount
+      name: admin-user
+      namespace: kube-system
+    ```
+  
+    `为用户绑定角色: sudo kubectl apply -f dashboard-adminuser-role-binding.yaml`
   
   - 启动dashboard
   
