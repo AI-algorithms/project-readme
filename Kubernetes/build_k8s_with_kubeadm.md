@@ -219,7 +219,7 @@
   
   - [创建一个amdin-user, 并绑定一个管理员角色](<https://github.com/kubernetes/dashboard/wiki/Creating-sample-user>)
   
-    1) `vi  dashboard-adminuser-create.yaml`
+    -  `vi  dashboard-adminuser-create.yaml`
   
     ```yaml
     apiVersion: v1
@@ -231,7 +231,7 @@
   
     `创建用户:sudo kubectl apply -f dashboard-adminuser-create.yaml`
   
-    2)`vi dashboard-adminuser-role-binding.yaml`
+    - `vi dashboard-adminuser-role-binding.yaml`
   
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
