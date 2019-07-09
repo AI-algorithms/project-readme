@@ -73,6 +73,23 @@ GET ops-container-demo-display/_count
 ```
 ![check.index._count](/ElasticStack/images/ops.elastic.index.check.index._count.png)
 
+更新迁移后的index 的副本集
+```yaml
+
+PUT ops-container-demo-display/_settings 
+{
+    "index" : {
+        "refresh_interval" : "15s",
+        "number_of_replicas" : 1
+    }
+}
+
+# 验证设置是否生效
+GET ops-container-demo-display/_settings 
+```
+![check.index._settings_](/ElasticStack/images/ops.elastic.put.index._settings.png)
+
+ops.elastic.put.index._settings.png
 别名转换及关闭index
 ```yaml
 POST _aliases
