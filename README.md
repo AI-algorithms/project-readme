@@ -21,7 +21,7 @@
 * [Grafana](./Grafana)
 * [Grpc](./Grpc)
 * [Istio](./Istio)
-* [Jager](./Jager)
+* [Jaeger](./Jager)
 * [Jenkins](./Jenkins)
 * [Kafka](./Kafka)
 * [Kong](./Kong)
