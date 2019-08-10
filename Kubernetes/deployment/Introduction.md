@@ -60,6 +60,7 @@ kube-scheduler：
 + 在 KubeProxyConfiguration  类型的 JSON 文件配置主要参数；
 + 使用 ipvs 代理模式；
 
-***etcd: ***
+***etcd:***
+
 + 3 节点高可用
 + etcd 启用 https
