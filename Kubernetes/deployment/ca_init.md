@@ -43,6 +43,26 @@
 -rwxr-xr-x 1 k8s root  6595195 3月  30 2016 cfssl-certinfo
 -rwxr-xr-x 1 k8s root  2277873 3月  30 2016 cfssljson
 ```
+
+效果校验
+
+```yaml
+# 查看 cfssl 当前版本
+[root@node1 ~]# cfssl version
+Version: 1.2.0
+Revision: dev
+Runtime: go1.6
+# cfssljson flag
+[root@node1 ~]# cfssljson -h
+Usage of cfssljson:
+  -bare
+        the response from CFSSL is not wrapped in the API standard response
+  -f string
+        JSON input (default "-")
+  -stdout
+        output the response instead of saving to a file
+```
+
 ---
 
 #### 创建 ***CA***
