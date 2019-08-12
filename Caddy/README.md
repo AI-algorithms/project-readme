@@ -1,3 +1,5 @@
+#### Caddy的使用
+
 ```
 download: https://caddyserver.com/download
 
@@ -11,11 +13,11 @@ sub.domainname.com {
     }
     proxy / localhost:3000
 }
-更多语法参考
-https://caddyserver.com/docs/caddyfile
+更多语法参考: https://caddyserver.com/docs/caddyfile
 
 在caddyfile目录下运行caddy即可，或在任 意目录运行(ROOT身份),
 （目的：输入邮箱生成LETSENCRYPT证书，存放于ROOT根目录.caddy下）
+
 > caddy -conf /path/to/Caddyfile
 
 caddy会下载证书，建立加密通道，并将请求转发至 3000
