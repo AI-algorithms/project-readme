@@ -1,6 +1,6 @@
-#### 使用Kubeadm搭建kubernetes集群
+### 使用Kubeadm搭建kubernetes集群
 
-- 前期准备
+#### 前期准备
   
   - [Docker安装, 选择适配操作系统的版本](<https://docs.docker.com/install/linux/docker-ce/centos/>)
   
