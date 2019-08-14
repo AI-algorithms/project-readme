@@ -319,7 +319,8 @@ kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   4d11h
 需要注意的是，在多节点的集群中，必须找到运行`Dashboard`节点的IP来访问，而不是Master节点的IP，在本文的示例，我部署了两台服务器，MatserIP为192.168.0.109，ClusterIP为192.168.0.110。
 
 遗憾的是，由于证书问题，我们无法访问，需要在部署Dashboard时指定有效的证书，才可以访问。
-由于在正式环境中，并不推荐使用NodePort的方式来访问Dashboard，因此,关于如何为Dashboard配置证书可参考：(Certificate management)[https://github.com/kubernetes/dashboard/wiki/Certificate-management]
+由于在正式环境中，并不推荐使用NodePort的方式来访问Dashboard，因此,关于如何为Dashboard配置证书可参考：
+[Certificate Management](https://github.com/kubernetes/dashboard/wiki/Certificate-management)
 
 
 * API Server
