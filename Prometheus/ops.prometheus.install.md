@@ -1,7 +1,7 @@
 | time | action|
 | :---: | :---: |
 |  `2019-11-17 02:45` | prometheus install docs |
-|
+
 
 **业务需求**
 
@@ -14,11 +14,12 @@
 ![design.architecture](/Prometheus/images/ops.prometheus.design.architecture.png)
 
 **组件版本**
+
 | name | version| 
 | :---: | :---: |
 | `prometheus` | 2.13.1|
 | `alertmanager` | 0.18.0 |
-|
+
 
 **部署安装**
 
