@@ -1,4 +1,7 @@
+#### docker 启动arango
+
 docker启动:https://hub.docker.com/_/arangodb/
+
 ```
 docker run -e ARANGO_RANDOM_ROOT_PASSWORD=1 -d arangodb
 //随机生成一个密码.默认用户名root,,docker logs 查看密码
@@ -14,8 +17,9 @@ table joins| collection joins
 primary key| _key
 index| index
 
+
 场景|SQL|AQL
-----|---|---
+----|--------------|---
 插入一条|INSERT INTO users (name, gender)  VALUES ("John Doe", "m");|INSERT {name: "John Doe", gender: "m" } INTO users
 插入多条|INSERT INTO users (name, gender)   VALUES ("John Doe", "m"),("Jane Smith", "f")|FOR user IN [{ name: "John Doe", gender: "m" }, { name: "Jane Smith", gender: "f" } ] INSERT user INTO users
 更新|UPDATE users SET name = "John Smith" WHERE id = 1;|UPDATE { _key:"1" }  WITH { name: "John Smith" }  IN users
@@ -30,9 +34,12 @@ join|SELECT * FROM users INNER JOIN friends  ON (friends.user = users.id);|FOR u
 left join|SELECT * FROM users LEFT JOIN friends ON (friends.user = users.id); |FOR user IN users  LET friends = ( FOR friend IN friends   FILTER friend.user == user._key     RETURN friend )  FOR friendToJoin IN (  LENGTH(friends) > 0 ? friends : [ { /* no match exists */ } ]  ) RETURN {    user: user,  friend: friend  }
 
 ## graphs-->aql
+
 1.一种是找层级(几度好友)    
 2.一种是找最近的路径    
-1.语法:    
+
+1.语法:
+
 FOR vertex[, edge[, path]]   
   IN [min[..max]]   
   OUTBOUND|INBOUND|ANY startVertex   
@@ -70,6 +77,7 @@ api:
 ```
 
 2.语法:   
+
 FOR vertex[, edge]   
   IN OUTBOUND|INBOUND|ANY SHORTEST_PATH   
   startVertex TO targetVertex   
