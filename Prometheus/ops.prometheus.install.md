@@ -72,11 +72,11 @@
     `children instance configuartion`
     ```yaml
     global:
-  scrape_interval:     5s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-  scrape_timeout: 5s # is set to the global default (10s).
-  external_labels:
-     dc: 'dc01'
+    scrape_interval:     5s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+    evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+    scrape_timeout: 5s # is set to the global default (10s).
+    external_labels:
+      dc: 'dc01'
 
     alerting:
     alertmanagers:
@@ -141,19 +141,19 @@
     `federation configuration`
     ```yaml
     global:
-  scrape_interval:     20s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 30s # Evaluate rules every 15 seconds. The default is every 1 minute.
-  scrape_timeout: 20s
-  external_labels:
-     dc: 'global'
+    scrape_interval:     20s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+    evaluation_interval: 30s # Evaluate rules every 15 seconds. The default is every 1 minute.
+    scrape_timeout: 20s
+    external_labels:
+      dc: 'global'
   
-  scrape_configs:
-  - job_name: 'federate'
-    honor_labels: true
-    metrics_path: '/federate'
-    params:
-      'match[]':
-        - '{project=~"ProjectName"}'
+    scrape_configs:
+    - job_name: 'federate'
+        honor_labels: true
+        metrics_path: '/federate'
+        params:
+        'match[]':
+            - '{project=~"ProjectName"}'
 
     static_configs:
       - targets:
@@ -162,9 +162,9 @@
         - 'dc3-children-prometheus:9090'
 
 
-  - job_name: 'parent-prometheus'
-    static_configs:
-    - targets: [ 'parent-prometheus' ]
+    - job_name: 'parent-prometheus'
+        static_configs:
+        - targets: [ 'parent-prometheus' ]
 
     alerting:
     alertmanagers:
@@ -172,7 +172,7 @@
         - targets: [ 'AlertManagerList:Port' ]
 
     rule_files:
-        - "/data/app/prometheus-2.13.0/conf.d/rules/*.yml"
+        - "/data/app/prometheus-2.13.1/conf.d/rules/*.yml"
     ```
 
 **alertmanage**
