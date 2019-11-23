@@ -8,7 +8,7 @@
 
 集群规划:
 
-[design.architecture](/Prometheus/images/ops.prometheus.design.architecture.png)
+![design.architecture](/Prometheus/images/ops.prometheus.design.architecture.png)
 
 组件版本:
 
