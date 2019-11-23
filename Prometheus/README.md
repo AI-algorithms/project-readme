@@ -8,7 +8,9 @@
 
 集群规划:
 
-[design.architecture](./images/ops.prometheus.design.architecture.png)
+<p align="center">
+<img width="500" align="center" src="images/ops.prometheus.design.architecture.png" />
+</p>
 
 组件版本:
 
@@ -402,13 +404,21 @@ grafana显示示例:
 
 1. grafana origin
 
-![grafana.origin.display](/Prometheus/images/ops.grafana.orgin.png)
+<p align="center">
+<img width="300" align="center" src="images/ps.grafana.orgin.png" />
+</p>
 
 2. grafana folder
-![grafana.folder.display](/Prometheus/images/ops.grafana.folder.png)
+
+<p align="center">
+<img width="300" align="center" src="images/ops.grafana.folder.png" />
+</p>
 
 3. grafana dashboard
-![grafan.dashboard.display](/Prometheus/images/ops.grafana.dashboard.png)
+
+<p align="center">
+<img width="300" align="center" src="images/ops.grafana.dashboard.png" />
+</p>
 
 
 
