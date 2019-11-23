@@ -3,24 +3,23 @@
 遇到的问题和需要避免的一些错误的认知,提高自己的能力,我们在路上!
 
 
-#### prometheus结合grafana
+#### prometheus结合grafana使用
 
 | time | action|
 | :---: | :---: |
 |  `2019-11-17 02:45` | prometheus install docs |
 
 
-**业务需求**
+业务需求:
 
-- ***多维度满足业务项目的需求***
-- ***统一监控系统***
-- ***满足云原生需求***
+* 多维度满足业务项目的需求
+* 统一监控系统
+* 满足云原生需求
 
-**集群规划**
+集群规划:
+[design.architecture](/Prometheus/images/ops.prometheus.design.architecture.png)
 
-![design.architecture](/Prometheus/images/ops.prometheus.design.architecture.png)
-
-**组件版本**
+组件版本:
 
 | name | version|  path | 
 | :---: | :---: | :---: |
@@ -30,51 +29,49 @@
 | `consul` | 1.6.2 | /usr/local/bin | 
 
 
-**部署安装**
+#### 部署安装
 
-**prometheus**
+* prometheus
 
-- ***prometheus install***
+```shell
+cd /data/soft
+wget https://github.com/prometheus/prometheus/releases/download/v2.13.1/prometheus-2.13.1.linux-amd64.tar.gz
 
-    ```shell
-    cd /data/soft
-    wget https://github.com/prometheus/prometheus/releases/download/v2.13.1/prometheus-2.13.1.linux-amd64.tar.gz
+tar xzf prometheus-2.13.1.linux-amd64.tar.gz
+mv prometheus-2.13.1.linux-amd64 prometheus-2.13.1
+mv prometheus-2.13.1 ../app/
+```
 
-    tar xzf prometheus-2.13.1.linux-amd64.tar.gz
-    mv prometheus-2.13.1.linux-amd64 prometheus-2.13.1
-    mv prometheus-2.13.1 ../app/
-    ```
+* instance systemctl service
 
-- ***instance systemctl service***
+```shell
+cat > /usr/lib/systemd/system/prometheus.service <<EOF
+[Unit]
+Description=Prometheus Server
+Documentation=https://prometheus.io/docs/introduction/overview/
+After=network-online.target
 
-   ```shell
-    cat > /usr/lib/systemd/system/prometheus.service <<EOF
-    [Unit]
-    Description=Prometheus Server
-    Documentation=https://prometheus.io/docs/introduction/overview/
-    After=network-online.target
+[Service]
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+User=root
+Restart=on-failure
+ExecStart=/data/app/prometheus-2.13.1/bin/prometheus \\
+                --config.file=/data/app/prometheus-2.13.1/conf.d/prometheus.yml \\
+                --storage.tsdb.path=/data/app/prometheus-2.13.1/data \\
+                --web.listen-address=:9090 --web.enable-lifecycle  \\
+                --storage.remote.flush-deadline=1h \\
+                --web.console.templates=/data/app/prometheus-2.13.1/consoles  \\
+                --web.console.libraries=/data/app/prometheus-2.13.1/console_libraries
 
-    [Service]
-    LimitNOFILE=1048576
-    LimitNPROC=1048576
-    LimitCORE=infinity
-    User=root
-    Restart=on-failure
-    ExecStart=/data/app/prometheus-2.13.1/bin/prometheus \\
-                    --config.file=/data/app/prometheus-2.13.1/conf.d/prometheus.yml \\
-                    --storage.tsdb.path=/data/app/prometheus-2.13.1/data \\
-                    --web.listen-address=:9090 --web.enable-lifecycle  \\
-                    --storage.remote.flush-deadline=1h \\
-                    --web.console.templates=/data/app/prometheus-2.13.1/consoles  \\
-                    --web.console.libraries=/data/app/prometheus-2.13.1/console_libraries
+ExecReload=/bin/kill -HUP $MAINPID
+[Install]
+WantedBy=multi-user.target
+EOF
+```
 
-    ExecReload=/bin/kill -HUP $MAINPID
-    [Install]
-    WantedBy=multi-user.target
-    EOF
-    ```
-
-- ***instance configuration***
+* instance configuration
 
     `children instance configuartion`
     ```yaml
