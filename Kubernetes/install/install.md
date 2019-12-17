@@ -694,9 +694,6 @@ subjects:
 
   namespace: kube-system
 
-
-
-
 ---
 
 apiVersion: v1
@@ -726,12 +723,40 @@ admin-token-d5jsg         kubernetes.io/service-account-token   3         1d
 $ kubectl get secret admin-token-d5jsg -o jsonpath={.data.token} -n kube-system |base64 -d# 会生成一串很长的base64后的字符串
 ```
 
-然后用上面的base64解码后的字符串作为token登录Dashboard即可：
-
 <p align="center">
 <img width="500" align="center" src="../images/1.jpg" />
 </p>
 
 
-最终我们就完成了。
+
+然后用下面的命令运行后的字符串作为token登录Dashboard即可：
+
+```bash
+> kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+  Name:         admin-user-token-r9xm9
+  Namespace:    kube-system
+  Labels:       <none>
+  Annotations:  kubernetes.io/service-account.name: admin-user
+                kubernetes.io/service-account.uid: 40357834-60c7-4172-a69c-b87bbbded009
+  
+  Type:  kubernetes.io/service-account-token
+  
+  Data
+  ====
+  ca.crt:     1025 bytes
+  namespace:  11 bytes
+  token:      .......
+```
+
+<p align="center">
+<img width="500" align="center" src="../images/2.jpg" />
+</p>
+
+
+<p align="center">
+<img width="500" align="center" src="../images/3.jpg" />
+</p>
+
+
+最终我们可以登录到kubernetes的dashboard的控制界面。
 
