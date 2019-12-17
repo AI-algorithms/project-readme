@@ -1,9 +1,6 @@
 ### 使用Kubeadm搭建kubernetes集群
 通过 Kubeadm 来搭建最新版本的 Kubernetes 1.15.3 集群，其实和以前搭建的方式方法基本一致，我们这里准备使用 calico 网络插件以及 ipvs 模式的 kube-proxy。
 
-
-
-
 #### 使用Kubeadm搭建kubernetes集群的前期准备
 
 - [Docker安装, 选择适配操作系统的版本](<https://docs.docker.com/install/linux/docker-ce/centos/>)
