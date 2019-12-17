@@ -1,7 +1,7 @@
 # kubernetes 部署文档
 
 ### 集群架构
-![kubernetes-Architecture](/Kubernetes/images/kubernetes-Architecture.png)
+![kubernetes-Architecture](../images/2.png)
 
 ## 组件版本
 序 号 |  组件名称  | 版本号  | 备 注
