@@ -7,3 +7,10 @@
 <p align="center">
 <img width="700" align="center" src="images/2.png" />
 </p>
+
+#### kubernetes的安装
+
+这里我们使用kubeadm搭建v1.15.3版本的Kubernetes集群.
+
+* [kubeadm搭建Kubernetes集群]()
+
