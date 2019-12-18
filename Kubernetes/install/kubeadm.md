@@ -15,6 +15,7 @@ GATEWAY=192.168.179.2 #默认网关，虚拟机安装的话，通常是2，也�
 NETMASK=255.255.255.0 #子网掩码（增加）
 DNS1=192.168.179.2 #DNS 配置，虚拟机安装的话，DNS就网关就行，多个DNS网址的话再增加（增加）
 ```
+
 *  重启生效静态ip地址配置
 ```bash
 > systemctl restart network
@@ -35,15 +36,15 @@ ssh 公钥认证是ssh认证的方式之一。通过公钥认证可实现ssh免�
 
 在用户目录的home目录下，有一个.ssh的目录，和当前用户ssh配置认证相关的文件，几乎都在这个目录下。
 
-ssh-keygen 可用来生成ssh公钥认证所需的公钥和私钥文件。
+`ssh-keygen` 可用来生成ssh公钥认证所需的公钥和私钥文件。
 
-使用 ssh-keygen 时，请先进入到 ~/.ssh 目录，不存在的话，请先创建。并且保证 ~/.ssh 以及所有父目录的权限不能大于 711.
+使用 `ssh-keygen` 时，请先进入到 `~/.ssh` 目录，不存在的话，请先创建。并且保证 `~/.ssh` 以及所有父目录的权限不能大于 711.
 
-使用 ssh-kengen 会在~/.ssh/目录下生成两个文件，不指定文件名和密钥类型的时候，默认生成的两个文件是：
+使用 `ssh-kengen` 会在`~/.ssh/`目录下生成两个文件，不指定文件名和密钥类型的时候，默认生成的两个文件是：
 
-* id_rsa
-* id_rsa.pub
-第一个是私钥文件，第二个是公钥文件。
+* id_rsa 私钥文件
+* id_rsa.pub 公钥文件
+
 
 生成ssh key的时候，可以通过 -f 选项指定生成文件的文件名，如下:
 ```bash
@@ -70,7 +71,7 @@ Enter same passphrase again:
 
 为了让私钥文件和公钥文件能够在认证中起作用，请确保权限正确。
 
-对于.ssh 以及父文件夹，当前用户用户一定要有执行权限，其他用户最多只能有执行权限。
+对于`.ssh` 以及父文件夹，当前用户用户一定要有执行权限，其他用户最多只能有执行权限。
 
 对于公钥和私钥文件也是: 当前用户一定要有执行权限，其他用户最多只能有执行权限。
 
@@ -85,13 +86,14 @@ Enter same passphrase again:
 ```
 
 
-#### 3. 配置hostname：
+#### 3. 配置hostname
+
 CentOS7永久修改：
 ```bash
 > hostnamectl set-hostname master
 ```
 
-#### 4. 配置本地DNS解析：
+#### 4. 配置本地DNS解析
 ```bash
 > vim /etc/hosts
 
@@ -137,7 +139,8 @@ CentOS7永久修改：
 > sed -i 's/^server/#&/' /etc/chrony.conf
 ```
 
-设置上游ntp服务器: 
+* 设置上游ntp服务器
+
 ```bash
 > cat >> /etc/chrony.conf << EOF
 server 0.asia.pool.ntp.org iburst
@@ -148,24 +151,30 @@ allow all
 EOF
 ```
 
-设置为开机自启动: 
+* 设置为开机自启动
+ 
 ```bash
 > systemctl enable chronyd && systemctl restart chronyd
 ```
 
-开启网络时间同步:
+* 开启网络时间同步
+
 ```bash
 > timedatectl set-ntp true
 ``` 
-开始同步时间:
+
+
+* 开始同步时间
 ```bash
 > chronyc sources
 ```
 
-
 #### 8.修改iptables参数
 
-纠正iptables被绕过导致流量路由不正确:
+* iptables
+
+纠正iptables被绕过导致流量路由不正确
+
 ```bash
 > cat <<EOF >  /etc/sysctl.d/k8s.conf
 vm.swappiness = 0
@@ -175,7 +184,8 @@ net.ipv4.ip_forward = 1
 EOF
 ```
 
-生效配置:
+* 生效配置
+
 ```bash
 > modprobe br_netfilter
 sysctl -p /etc/sysctl.d/k8s.conf
@@ -328,7 +338,6 @@ name=Kubernetes Repository
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
 gpgcheck=1
 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
-
 ```
 
 验证是否配置成功:
@@ -345,7 +354,6 @@ gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg https:/
 
 在安装kubernetes的包的时候,上面的所有步骤在三个节点均需执行.
 
-
 安装kubeadm,kubelet,kubectl:
 
 ```bash
@@ -359,6 +367,7 @@ gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg https:/
 ```
 
 初始化之前的配置，设置忽略swap报错:
+
 ```bash
 > vi /etc/sysconfig/kubelet
 KUBELET_EXTRA_ARGS="--fail-swap-on=false"
@@ -483,7 +492,6 @@ done
 ```bash
 > kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
-
 
 * 查看运行中pods
 
