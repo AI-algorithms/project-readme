@@ -125,19 +125,14 @@ CentOS7永久修改：
 
 #### 7. 设置时间同步
 
-设置时区：
+* 设置时区
 
 ```bash
 > timedatectl set-timezone Asia/Shanghai
-```
-
-```bash
 > yum install -y chrony
-```
-
-```bash
 > sed -i 's/^server/#&/' /etc/chrony.conf
 ```
+
 
 * 设置上游ntp服务器
 
@@ -216,32 +211,36 @@ EOF
 
 #### 9. 配置阿里云docker源
 
-安装yum-config-manager工具:
+* 安装yum-config-manager工具:
+
 ```bash
 > yum -y install yum-utils 
 ```
 
-配置源:
+* 配置源:
+
 ```bash
 > yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 
-安装最新版dockers-ce:
+* 安装最新版dockers-ce:
+
 ```bash
 > yum install -y docker-ce
 ```
 
-设置开机自启动:
+* 设置开机自启动:
+
 ```bash
 > systemctl start docker && systemctl enable docker
 ```
 
 可设置daocloud镜像加速或者阿里云镜像加速，（不操作节约时间）.
 
-
 #### 10. 修改docker默认配置
 
-编辑docker.service:
+* 编辑docker.service:
+
 ```bash
 > vim /usr/lib/systemd/system/docker.service
 # 增加配置项：配置docker科学上网代理
@@ -253,12 +252,12 @@ ExecReload=/bin/kill -s HUP $MAINPID
 ```
 
 
-使dockers配置生效:
+* 使dockers配置生效:
 ```bash
 > systemctl daemon-reload
 > systemctl restart docker
 
-> 	docker info  查看配置是否生效
+> docker info  #查看配置是否生效
 
 Containers: 21
  Running: 15
@@ -330,7 +329,7 @@ sysctl: reading key "net.ipv6.conf.vethcd0c949.stable_secret"
 
 #### 11. 配置阿里云的kubernetes的源
 
-配置kubernetes的源:
+* 配置kubernetes的源
 ```bash
 > vim  /etc/yum.repo.d/kubernetes.repo
 [kubernetes]
@@ -340,12 +339,12 @@ gpgcheck=1
 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
 ```
 
-验证是否配置成功:
+* 验证是否配置成功
 ```bash
 > yum repolist 
 ```
 
-查看kubernetes软件包：
+* 查看kubernetes软件包
 ```bash
 > yum list all | grep "^kube"
 ```
