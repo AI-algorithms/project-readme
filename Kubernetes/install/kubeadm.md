@@ -517,6 +517,7 @@ kube-scheduler-master            1/1     Running   0          5m26s
 #### 13. node节点执行命令安装k8s
 
 * node安装kubeadm
+
 ```bash
 > yum install kubeadm kubelet -y
 ```
