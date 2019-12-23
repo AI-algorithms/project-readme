@@ -462,7 +462,7 @@ done
 > kubeadm join 192.168.79.130:6443 --token 1iq1mk.l366bc3w6nbv1vvd --discovery-token-ca-cert-hash sha256:c2c1d8ffb84733edd7991735ba9a20c4326adb146c58acd01287f8661a0d0bfb
 ```
 
-如果遗忘：
+如果遗忘了创建token,就补上：
 ```bash
 > kubeadm token create --print-join-command
 ```
@@ -479,7 +479,6 @@ done
 > cp /etc/kubernetes/admin.conf .kube/config
 ```
 
-
 然后需要部署[flannel网络插件](https://github.com/coreos/flannel).
 
 * 拉取flannel的镜像
@@ -487,6 +486,7 @@ done
 ```bash
 > docker pull quay.io/coreos/flannel:v0.11.0-amd64
 ```
+
 * kubectl 安装kube-flannel
 ```bash
 > kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
