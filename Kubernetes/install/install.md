@@ -7,7 +7,7 @@
 
 - [Kubectl, Kubelet, Kubeadm安装](<https://kubernetes.io/zh/docs/setup/independent/install-kubeadm/>)
 
-- Kubectl, Kubelet, Kubeadm墙内安装, 我这里是centos, 不同操作系统查找相应的安装配置方式
+Kubectl, Kubelet, Kubeadm墙内安装, 我这里是centos, 不同操作系统查找相应的安装配置方式
 
 ```bash
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
@@ -48,7 +48,7 @@ cat > /etc/docker/daemon.json <<EOF
 
 - 拉取所需镜像
 
-```
+```bash
 // 拉取阿里云镜像仓库中的公共镜像
 sudo docker pull registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/kube-controller-manager:v1.14.1
 sudo docker pull registry.cn-hangzhou.aliyuncs.com/mirror_google_containers/kube-apiserver:v1.14.1
