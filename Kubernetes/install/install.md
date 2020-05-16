@@ -1,5 +1,6 @@
 ### 使用Kubeadm搭建kubernetes集群
-通过 Kubeadm 来搭建最新版本的 Kubernetes 1.15.3 集群，其实和以前搭建的方式方法基本一致，我们这里准备使用 calico 网络插件以及 ipvs 模式的 kube-proxy。
+
+这里我们通过 Kubeadm 来搭建最新版本的 Kubernetes 1.15.3 集群，其实和以前搭建的方式方法基本上一致. 我们这里使用 calico 网络插件以及 ipvs 模式的 kube-proxy。
 
 #### 使用Kubeadm搭建kubernetes集群的前期准备
 
@@ -79,9 +80,9 @@ sudo docker rmi registry.cn-hangzhou.aliyuncs.com/jxqc/coredns:1.3.1
 sudo docker rmi registry.cn-hangzhou.aliyuncs.com/kuberneters/kubernetes-dashboard-amd64:v1.10.1
 ```
 
-- **以上相同配置的子节点一台**
+- 用以上相同配置去配置一台子节点
 
-- 配置Master节点的Kubelet驱动, 修改 --cgroup-driver=cgroupfs  为  --cgroup-driver=systemd
+配置Master节点的Kubelet驱动, 修改 `--cgroup-driver=cgroupfs` 为  `--cgroup-driver=systemd`.
 
 ```bash
 > sudo vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
