@@ -10,9 +10,9 @@
 
 #### kubernetes的安装
 
-这里我们使用kubeadm搭建v1.15.3版本的Kubernetes集群.
+kubernetes的集群安装,这里我们使用kubeadm搭建v1.15.3版本的Kubernetes集群.
 
-
+安装集群分为两个部分:
 * [kubeadm搭建集群前的准备](https://github.com/AI-algorithms/project-readme/blob/master/Kubernetes/install/kubeadm.md)
 * [kubeadm搭建Kubernetes集群](https://github.com/AI-algorithms/project-readme/blob/master/Kubernetes/install/install.md)
 
