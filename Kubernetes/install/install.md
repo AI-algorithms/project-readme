@@ -1165,3 +1165,4 @@ $ kubectl get secret admin-token-d5jsg -o jsonpath={.data.token} -n kube-system 
 
 最终我们可以登录到kubernetes的dashboard的控制界面。
 
+如果你的集群运行时间超过了一年可以更新下kubeadm的证书.[Kubeadm证书过期时间调整](http://team.jiunile.com/blog/2018/12/k8s-kubeadm-ca-upgdate.html)
