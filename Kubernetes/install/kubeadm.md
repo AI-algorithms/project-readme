@@ -1,4 +1,4 @@
-#### 使用Kubeadm搭建kubernetes的准备工作
+### 使用Kubeadm搭建kubernetes的准备工作
 
 基础环境配置
 
@@ -29,6 +29,7 @@ DNS1=192.168.179.2 #DNS 配置，虚拟机安装的话，DNS就网关就行，�
 #### 2. 配置节点间无密钥通信
 
 * 三个节点分别执行：
+
 ```bash
 > ssh-keygen
 ```
@@ -85,7 +86,6 @@ Enter same passphrase again:
 > ssh root@192.168.79.132
 ```
 
-
 #### 3. 配置hostname
 
 CentOS7永久修改：
@@ -94,6 +94,7 @@ CentOS7永久修改：
 ```
 
 #### 4. 配置本地DNS解析
+
 ```bash
 > vim /etc/hosts
 
@@ -102,13 +103,13 @@ CentOS7永久修改：
 192.168.79.132 node2
 ```
 
-
 复制到各个节点：
 ```bash
 > scp /etc/hosts root@192.168.79.132:/etc/
 ```
 	
 #### 5. 关闭selinux和firewalld
+
 ```bash
 > systemctl stop firewalld && systemctl disable firewalld
 
